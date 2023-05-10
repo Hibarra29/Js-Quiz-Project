@@ -9,6 +9,7 @@ body{
 }
 
 .app{
+	display: none;
 	background: white;
 	width: 90%;
 	max-width: 600px;
@@ -77,4 +78,36 @@ body{
 
 .incorrect{
 	background: #f73b3bb0;
+}
+
+.set-color{
+	color: white;
+}
+
+.hide{
+	position: fixed; 
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+} 
+
+.hide h1 {
+	color: aquamarine;
+	padding-bottom: 10px;
+}
+
+.hide p{
+	padding-bottom: 10px;
+}
+
+#start-btn{
+	background: rgb(255, 255, 255);
+	color: #222;
+	width: 100px;
+	border-radius: 20px;
+}
+
+#start-btn:hover{
+	background: #222;
+	color: antiquewhite;
 }

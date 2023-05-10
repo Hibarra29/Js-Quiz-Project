@@ -42,9 +42,17 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const startButton = document.getElementById("start-btn");
 
 let currentQuestionIndex = 0;
 let score = 0;
+
+startButton.addEventListener("click",() => {
+	var questionSection = document.querySelector(".app")
+    questionSection.style.display = "block";
+	var hide = document.querySelector(".hide");
+	hide.style.display = "none";
+})
 
 
 function startQuiz(){
