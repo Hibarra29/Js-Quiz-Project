@@ -1,60 +1,67 @@
+//quiz questions
 const questions = [
 	{
-		question: "test question",
+		question: "What does CSS stand for?",
 		answers:[
-			{text:"test q1", correct:false},
-			{text:"test q2", correct:false},
-			{text:"test q3", correct:false},
-			{text:"test q4", correct:true},
+			{text:"Cascading Style Sheets", correct:true},
+			{text:"Computer Style Sheets", correct:false},
+			{text:"Creative Style Sheets", correct:false},
+			{text:"Colorful Style Sheets", correct:false},
 		]
 
 	},
 	{
-		question: "test question2",
+		question: "In CSS, h1 can be called as?",
 		answers:[
-			{text:"test q1", correct:false},
-			{text:"test q2", correct:false},
-			{text:"test q3", correct:false},
-			{text:"test q4", correct:true},
+			{text:"Value", correct:false},
+			{text:"Attribute", correct:false},
+			{text:"Tag", correct:false},
+			{text:"Selector", correct:true},
 		]
 	},
 	{
-		question: "test question3",
+		question: "Which HTML tag is used to define an internal style sheet?",
 		answers:[
-			{text:"test q1", correct:false},
-			{text:"test q2", correct:false},
-			{text:"test q3", correct:false},
-			{text:"test q4", correct:true},
+			{text:"CSS", correct:false},
+			{text:"Text", correct:false},
+			{text:"Style", correct:true},
+			{text:"Script", correct:false},
 		]
 	},
 	{
-		question: "test question4",
+		question: "CSS Padding property is used for?",
 		answers:[
-			{text:"test q1", correct:false},
-			{text:"test q2", correct:false},
-			{text:"test q3", correct:false},
-			{text:"test q4", correct:true},
+			{text:"Border", correct:false},
+			{text:"Space", correct:true},
+			{text:"Margin", correct:false},
+			{text:"Background Color", correct:false},
 		]
 	}
 
 ];
 
+
+//elements being pulled from DOM
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const startButton = document.getElementById("start-btn");
 
+
 let currentQuestionIndex = 0;
 let score = 0;
 
+
+//start quiz button
 startButton.addEventListener("click",() => {
 	var questionSection = document.querySelector(".app")
     questionSection.style.display = "block";
 	var hide = document.querySelector(".hide");
 	hide.style.display = "none";
+	
 })
 
-
+//function to start the quiz
 function startQuiz(){
 	currentQuestionIndex = 0;
 	score = 0;
@@ -62,6 +69,7 @@ function startQuiz(){
 	showQuestion();
 }
 
+//function to show questions
 function showQuestion(){
 	resetState();
 	let currentQuestion = questions[currentQuestionIndex];
@@ -80,7 +88,7 @@ function showQuestion(){
 	});
 }
 
-
+//function to reset on next question
 function resetState(){
 	nextButton.style.display = "none";
 	while(answerButtons.firstChild){
@@ -88,6 +96,7 @@ function resetState(){
 	}
 }
 
+//function adds correct or incorrect class to answer buttons
 function selectAnswer(e){
 	const selectedBtn = e.target;
 	const isCorrect = selectedBtn.dataset.correct === "true";
@@ -106,13 +115,16 @@ function selectAnswer(e){
 	nextButton.style.display = "block";
 }
 
+//function shows final score at end
 function showScore(){
 	resetState();
 	questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
 	nextButton.innerHTML = "Play Again";
+
 	nextButton.style.display = "block";
 }
 
+//function of what the next button should do 
 function handleNextButton(){
 	currentQuestionIndex++;
 	if(currentQuestionIndex < questions.length){
@@ -122,6 +134,26 @@ function handleNextButton(){
 	}
 }
 
+//timer countdown start
+
+
+var count = 15;
+var interval = setInterval(function(){
+  document.getElementById('count').innerHTML=count;
+  count--;
+  if (count === 0 - 1){
+    clearInterval(interval);
+    document.getElementById('count').innerHTML='Out of Time!';
+  }
+
+}, 1000);
+
+function endGame() {
+    clearInterval(timer);
+  }
+
+
+//next button event listener 
 nextButton.addEventListener("click", ()=>{
 	if(currentQuestionIndex < questions.length){
 		handleNextButton();
